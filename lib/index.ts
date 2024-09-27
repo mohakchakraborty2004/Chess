@@ -5,10 +5,10 @@ const port = 8080;
 const wss = new WebSocketServer({port : port});
 
 wss.on("connection", function connection(socket){
-     
+     //when the user connects to web socket add him to the game array => 
     GameManager.getInstance().addUser(socket)
-    socket.send("hellow !");
+
+   //for eg if the user leaves the game in middle , remove him from the game array =>
     socket.on("disconnect", ()=> GameManager.getInstance().removeUser(socket))
 
-    
 })
