@@ -64,7 +64,7 @@ export class GameManager {
              
             const game = this.games.find(game => game.Player1 == socket || game.Player2 === socket)
             if(game) {
-                game.MakeMove(socket, message)
+                game.MakeMove(socket, message.move)
             }
 
         }

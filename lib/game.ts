@@ -18,6 +18,19 @@ export class Game {
         
         this.startTime = new Date();
 
+        this.Player1.send(JSON.stringify({
+            type : "init_game", 
+            payload : {
+                color : "white"
+            }
+        }));
+        this.Player2.send(JSON.stringify({
+            type : "init_game", 
+            payload : {
+                color : "black"
+            }
+        }));
+
     }
 
     public static getInstance(_player1 : WebSocket, _player2 : WebSocket) {
@@ -37,12 +50,14 @@ export class Game {
     }){
 
         //validating who has to play the move 
-
+        console.log(this.moveCount);
         if(this.moveCount % 2 === 0 && _player !== this.Player1){
+             console.log("return1")
              return;
              // for every even no. of moves the white moves. i.e if this is the 0th move , and black tries to move which is player2 then it will early return.
         }
         if(this.moveCount % 2 === 1 && _player !== this.Player2){
+            console.log("return 2")
             return;
        }
        
@@ -50,6 +65,7 @@ export class Game {
 
         // making the move 
         try{
+            console.log("try catch")
             this.Chess.move(move)
         }catch(e){
            console.log(e)
@@ -80,6 +96,8 @@ export class Game {
             paylaod : move
           }))
        }
+
+       this.moveCount++ ;
 
       
     
