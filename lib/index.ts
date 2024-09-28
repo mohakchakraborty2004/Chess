@@ -9,6 +9,6 @@ wss.on("connection", function connection(socket){
     GameManager.getInstance().addUser(socket)
 
    //for eg if the user leaves the game in middle , remove him from the game array =>
-    socket.on("disconnect", ()=> GameManager.getInstance().removeUser(socket))
+    socket.on("close", ()=> GameManager.getInstance().removeUser(socket))
 
 })

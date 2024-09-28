@@ -8,9 +8,9 @@ export class Game {
      private moveCount = 0
      startTime : Date; 
 
-    private static instance : Game
+   
 
-    private constructor (_player1 : WebSocket, _player2 : WebSocket) {
+    public constructor (_player1 : WebSocket, _player2 : WebSocket) {
 
         this.Player1 = _player1;
         this.Player2 = _player2;
@@ -33,15 +33,7 @@ export class Game {
 
     }
 
-    public static getInstance(_player1 : WebSocket, _player2 : WebSocket) {
-        if(!this.instance){
-          return this.instance = new Game(_player1, _player2 );
-        }
-        return this.instance;
-
-
-
-    }
+ 
 
 
     public MakeMove(_player: WebSocket, move : {

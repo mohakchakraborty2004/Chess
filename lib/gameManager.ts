@@ -40,6 +40,7 @@ export class GameManager {
 
       this.users = this.users.filter(user => user !== socket);
       //game logic to stop the game.
+      socket.close();
 
     }
 
@@ -51,8 +52,10 @@ export class GameManager {
         if (message.type === "init_game") {
             if(this.waitingUser){
                 //if there is a user waiting for matchmaking , and a new user (socket) comes, match them.
-               const game = Game.getInstance(this.waitingUser, socket);
+               const game = new Game(this.waitingUser, socket);
                this.games.push(game);
+               this.waitingUser = null;
+               
             }else{
                 //if a new user (socket) comes and there is no previously waiting user then assign the new socket as the waiting user. 
                 this.waitingUser = socket; 
