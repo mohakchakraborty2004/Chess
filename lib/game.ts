@@ -57,7 +57,9 @@ export class Game {
 
         // making the move 
         try{
-            console.log("try catch")
+            console.log("try catch");
+            console.log(move.from);
+            console.log(move.to);
             this.Chess.move(move)
         }catch(e){
            console.log(e)

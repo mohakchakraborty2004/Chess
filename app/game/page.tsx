@@ -22,28 +22,34 @@ const [board, setBoard] = useState(chess.board())
         }
 
         socket.onmessage = (event) => {
-            const message = JSON.parse(event.data.toString());
+            const message = JSON.parse(event.data);
             console.log(message)
 
             if(message.type === "init_game"){
             // when the game is initialized a new chess instance is initiated
-             setChess(new Chess());
+             
              // when the new chess instance is initiated , a new chess board is initiated with the starting positions in a 2d array
              setBoard(chess.board())
 
              console.log("game initialized")
 
-            }else if(message.type === "move"){
+            }
+            
+            if(message.type === "move"){
+              console.log("move elif block")
                 //fetch the move
-            const move =  message.payload ;
-                // make the move using chess's instance
+            const move =  message.payload.move ;
+            console.log(move)
+            //     // make the move using chess's instance
             chess.move(move);
                 // update the board after the move is successfull
-            setBoard(chess.board());
+             setBoard(chess.board());
             
 
                 console.log("move made");
-            }else if(message.type === "game_over"){
+            }
+            
+            if(message.type === "game_over"){
 
                  console.log("game over")
             }
@@ -67,7 +73,7 @@ const [board, setBoard] = useState(chess.board())
         <>
         <div className="grid grid-cols-3 h-[100vh]">
             <div className="col-span-2 flex justify-center items-center">
-                <ChessBoard board={board} socket={socket}></ChessBoard>
+                <ChessBoard chess={chess} setBoard={setBoard} board={board} socket={socket}></ChessBoard>
             </div>
             <div className="col-span-1 bg-slate-900">
                  <Button title="play" onClick={()=> {
