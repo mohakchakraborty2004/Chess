@@ -38,10 +38,10 @@ const [board, setBoard] = useState(chess.board())
             if(message.type === "move"){
               console.log("move elif block")
                 //fetch the move
-            const move =  message.payload.move ;
-            console.log(move)
-            //     // make the move using chess's instance
-            chess.move(move);
+              const move =  message.payload ;
+              console.log(typeof move)
+        
+             chess.move(move);
                 // update the board after the move is successfull
              setBoard(chess.board());
             

@@ -57,6 +57,8 @@ export class Game {
 
         // making the move 
         try{
+            console.log(typeof move)
+            console.log(move)
             console.log("try catch");
             console.log(move.from);
             console.log(move.to);
@@ -82,12 +84,12 @@ export class Game {
        if(this.moveCount % 2 === 0 ){
           this.Player2.send(JSON.stringify({
             type : "move", 
-            paylaod : move
+            payload : move
           }))
        } else {
         this.Player1.send(JSON.stringify({
             type : "move", 
-            paylaod : move
+            payload : move
           }))
        }
 
