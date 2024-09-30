@@ -1,3 +1,5 @@
+"use server";
+
 import { WebSocket } from "ws";
 import { Game } from "./game";
 

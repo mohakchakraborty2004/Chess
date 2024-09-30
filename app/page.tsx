@@ -19,9 +19,7 @@ export default function Home() {
         <h1 className="text-white font-semibold text-[3rem]">Welcome to <span className="text-blue-500 font-bold text-[4rem]">UnChess.com</span></h1>
         <h1 className="text-white font-semibold text-[2rem] ">Definitely not the <span className="text-blue-500 font-bold text-[4rem] pl-2">#1</span>chess website.</h1>
      <Button title = "PLAY" onClick= {()=> {
-      () => {
         navigate.push("/game");
-     }
      }} />
     </div>
    </div>

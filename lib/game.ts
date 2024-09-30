@@ -1,3 +1,6 @@
+"use server";
+
+
 import { WebSocket } from "ws";
 import { Chess } from "chess.js";
 
