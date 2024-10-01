@@ -12,6 +12,7 @@ export default function Game() {
 
 const [chess, setChess] =  useState(new Chess());
 const [board, setBoard] = useState(chess.board())
+const [color , setColor] = useState<string | null>(null)
 
  
     const socket = useSocket();
@@ -31,8 +32,9 @@ const [board, setBoard] = useState(chess.board())
              
              // when the new chess instance is initiated , a new chess board is initiated with the starting positions in a 2d array
              setBoard(chess.board())
-
+             const colour = message.payload.color
              console.log("game initialized")
+             setColor(colour);
 
             }
             
@@ -103,12 +105,14 @@ const [board, setBoard] = useState(chess.board())
             <div className="col-span-2 flex justify-center items-center">
                 <ChessBoard chess={chess} setBoard={setBoard} board={board} socket={socket}></ChessBoard>
             </div>
-            <div className="col-span-1 bg-slate-900">
+            <div className="col-span-1 flex flex-col justify-center items-center">
                  <Button title="play" onClick={()=> {
                       socket.send(JSON.stringify({
                         type : "init_game"
                       }))
                  }} ></Button>
+
+                 <h1 className="font-bold text-xl  mt-3">Your Color is <span className="font-bold text-3xl text-blue-600 mt-3">{color}</span> </h1>
             </div>
         </div>
         </>

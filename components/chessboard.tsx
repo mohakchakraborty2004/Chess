@@ -57,7 +57,7 @@ export default function ChessBoard({ chess , setBoard , board , socket }: {
         
   //  }
     // Array for the files (columns) in chess notation
- //   
+ //   {square ? square.type : ""}
 
     return (
         <div>
@@ -113,7 +113,9 @@ export default function ChessBoard({ chess , setBoard , board , socket }: {
                             >
 
                                 <div className="">
-                                    {square ? square.type : ""}
+                                    
+                                    {square ? <img className="w-13" src={`/${square?.color === "b" ? square?.type : `${square?.type?.toUpperCase()} white`}.png`} /> : null}
+
                                 <div className="absolute text-xs text-white"></div>
 
 
